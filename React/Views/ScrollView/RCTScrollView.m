@@ -387,15 +387,13 @@ RCT_NOT_IMPLEMENTED(- (instancetype)init)
     _scrollView.delegate = self;
     _scrollView.delaysContentTouches = NO;
 
-#if defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && __IPHONE_OS_VERSION_MAX_ALLOWED >= 110000 /* __IPHONE_11_0 */
-    // `contentInsetAdjustmentBehavior` is only available since iOS 11.
-    // We set the default behavior to "never" so that iOS
-    // doesn't do weird things to UIScrollView insets automatically
-    // and keeps it as an opt-in behavior.
-    if ([_scrollView respondsToSelector:@selector(setContentInsetAdjustmentBehavior:)]) {
-        _scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    if (@available(iOS 11.0, *)) {
+      // `contentInsetAdjustmentBehavior` is only available since iOS 11.
+      // We set the default behavior to "never" so that iOS
+      // doesn't do weird things to UIScrollView insets automatically
+      // and keeps it as an opt-in behavior.
+      _scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     }
-#endif
 
     _automaticallyAdjustContentInsets = YES;
     _DEPRECATED_sendUpdatedChildFrames = NO;
