@@ -278,6 +278,7 @@ const APIExamples: Array<RNTesterExample> = [
   {
     key: 'CrashExample',
     module: require('./CrashExample'),
+    supportsTVOS: false,
   },
   {
     key: 'Dimensions',
